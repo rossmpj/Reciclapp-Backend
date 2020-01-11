@@ -15,7 +15,7 @@ class Objeto extends Model
      * @var array
      */
     protected $fillable = [
-        'nombre', 'descripcion', 'precio', 'fecha_publicacion', 'usuario_id', 'categoria_id'
+        'nombre', 'descripcion', 'precio', 'fecha_publicacion','estado','usuario_id', 'categoria_id'
     ];
 
     /**

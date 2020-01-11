@@ -19,6 +19,7 @@ class CreateObjetosTable extends Migration
             $table->string('descripcion');
             $table->double('precio');
             $table->date('fecha_publicacion');
+            $table->string('estado');
             $table->timestamps();
 
             $table->string('usuario_id');
