@@ -8,6 +8,21 @@ class Usuario extends Model
 {
     protected $table = 'usuarios';
     protected $primaryKey = 'usuario_id';
+     /**
+     * Indicates if the IDs are no auto-incrementing.
+     *
+     * @var bool
+     */
+    public $incrementing = false;
+
+    /**
+     * The "type" of the auto-incrementing ID.
+     *
+     * @var string
+     */
+    protected $keyType = 'string';
+
+
 
     /**
      * The attributes that are mass assignable.
@@ -15,7 +30,7 @@ class Usuario extends Model
      * @var array
      */
     protected $fillable = [
-        'nombre_usuario', 'contrasena', 'usuario_id', 'opinion_id', 'rol_id', 'informacion_id'
+        'nombre_usuario', 'contrasena', 'usuario_id', 'rol_id', 'informacion_id'
     ];
 
     /**

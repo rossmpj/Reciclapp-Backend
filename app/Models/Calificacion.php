@@ -15,7 +15,7 @@ class Calificacion extends Model
      * @var array
      */
     protected $fillable = [
-        'comentario', 'usuario_id', 'objeto_id'
+        'comentario', 'usuario_id', 'objeto_id','created_at'
     ];
 
     /**
@@ -24,7 +24,7 @@ class Calificacion extends Model
      * @var array
      */
     protected $hidden = [
-    	'created_at', 'updated_at'
+    	 'updated_at'
     ];
 
     // Relación: Objeto - Calificacion (1 - M)

@@ -13,6 +13,12 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
+/*API Usuario */
+    Route::get('mostrar_perfil/{usuario_id}', 'UsuarioController@mostrar_perfil');
+
+/*API Calificacion */
+    Route::get('mostrar_comentarios/{id_objeto}', 'CalificacionController@mostrar_comentarios');
+    Route::post('comentarios', 'CalificacionController@comentar_objeto');
+
+/*API Objeto */
+    Route::post('objetos', 'ObjetoController@registrar_objeto');
