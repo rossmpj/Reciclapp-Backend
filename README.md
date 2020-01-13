@@ -1,78 +1,72 @@
-<p align="center"><img src="https://res.cloudinary.com/dtfbvvkyp/image/upload/v1566331377/laravel-logolockup-cmyk-red.svg" width="400"></p>
+# Proyecto Reciclapp
+ 
+Definición de servicios para el lado del servidor de la aplicación.
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/d/total.svg" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/v/stable.svg" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
-</p>
+Se utilizó la herramienta de prototipado móvil Marvel App para detallar las pantallas principales que tendrá la app denominada [“Reciclapp”](https://marvelapp.com/dbbf1i7/)
 
-## About Laravel
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## Evidencia de funcionamiento de webservices
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+A continuación, se muestra el funcionamiento de los servicios web realizados. Se utilizó la herramienta PostMan para ejecutar las pruebas. En [api.php](https://github.com/rossmpj/Reciclapp-Backend/blob/master/routes/api.php) se pude encontrar la estructura de los servicios que van a ser consumidos.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
 
-## Learning Laravel
+### Registrar objeto
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+Permite almacenar los datos de un objeto que se quiere publicar para ser comprado o vendido, los datos que recibe son: nombre del objeto, descripción, precio, fecha de publicación, el id del usuario que está realizando la publicación y el id de la categoría a la cual pertenece el objeto. Esto se registra en la tabla Objeto, además, si hubiera imágenes asociadas, la ruta de estas se almacenaría en la tabla Imagen.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+La definición de este servicio se puede encontrar en el [controlador del modelo Objeto](https://github.com/rossmpj/Reciclapp-backend/blob/master/app/Http/Controllers/ObjetoController.php)
 
-## Laravel Sponsors
+### Comentar objeto
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+Este servicio permitirá registrar el comentario que un usuario quiera dejar sobre un objeto en específico, esto se almacenará en la tabla Calificación y los datos que recibe son: comentario, el id del usuario que está realizando y el id del objeto.
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[British Software Development](https://www.britishsoftware.co)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- [UserInsights](https://userinsights.com)
-- [Fragrantica](https://www.fragrantica.com)
-- [SOFTonSOFA](https://softonsofa.com/)
-- [User10](https://user10.com)
-- [Soumettre.fr](https://soumettre.fr/)
-- [CodeBrisk](https://codebrisk.com)
-- [1Forge](https://1forge.com)
-- [TECPRESSO](https://tecpresso.co.jp/)
-- [Runtime Converter](http://runtimeconverter.com/)
-- [WebL'Agence](https://weblagence.com/)
-- [Invoice Ninja](https://www.invoiceninja.com)
-- [iMi digital](https://www.imi-digital.de/)
-- [Earthlink](https://www.earthlink.ro/)
-- [Steadfast Collective](https://steadfastcollective.com/)
-- [We Are The Robots Inc.](https://watr.mx/)
-- [Understand.io](https://www.understand.io/)
-- [Abdel Elrafa](https://abdelelrafa.com)
-- [Hyper Host](https://hyper.host)
-- [Appoly](https://www.appoly.co.uk)
-- [OP.GG](https://op.gg)
+La definición de este servicio se puede encontrar en el [controlador del modelo Calificación](https://github.com/rossmpj/Reciclapp-Backend/blob/master/app/Http/Controllers/CalificacionController.php)
 
-## Contributing
+### Mostrar comentarios
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+Este servicio permitirá visualizar los comentarios de un determinado objeto de parte de un usuario, este comentario está almacenado en la tabla Calificación y tiene relación con las tablas Usuario y Objeto, para tener una identificación sobre quién realiza determinados comentarios.
+ 
+La definición de este servicio se puede encontrar en el [controlador del modelo Calificación](https://github.com/rossmpj/Reciclapp-Backend/blob/master/app/Http/Controllers/CalificacionController.php)
 
-## Code of Conduct
+### Mostrar perfil
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+Este servicio permitirá visualizar los datos de un usuario, estos están en la tabla Usuario y tiene relación con la tabla InformaciónContacto.
 
-## Security Vulnerabilities
+La definición de este servicio se puede encontrar en el [controlador del modelo Usuario](https://github.com/rossmpj/Reciclapp-Backend/blob/master/app/Http/Controllers/UsuarioController.php)
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+### Cambiar estado de objeto
 
-## License
+Este servicio permitirá cambiar el estado de un artículo de la tabla Objeto, donde el usuario podrá cambiar el estado de este entre disponible y no disponible. 
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+La definición de este servicio se puede encontrar en el [controlador del modelo Objeto](https://github.com/rossmpj/Reciclapp-Backend/blob/master/app/Http/Controllers/ObjetoController.php)
+
+![cambiar_estado_1.png](https://github.com/rossmpj/Reciclapp-Backend/blob/master/public/api/cambiar_estado_1.PNG)
+
+![cambiar_estado_0.png](https://github.com/rossmpj/Reciclapp-Backend/blob/master/public/api/cambiar_estado_0.PNG)
+
+
+### Ver mis publicaciones
+
+Este servicio consiste en mostrar la lista de objetos que ha publicado un usuario registrado. El parámetro que recibe es id del usuario y los datos a mostrarse se obtienen a partir de las tablas Objeto, Imagen y Categoría.
+
+La definición de este servicio se puede encontrar en el [controlador del modelo Objeto](https://github.com/rossmpj/Reciclapp-Backend/blob/master/app/Http/Controllers/ObjetoController.php)
+
+![ver_mis_publicaciones.png](https://github.com/rossmpj/Reciclapp-Backend/blob/master/public/api/ver_mis_publicaciones.PNG)
+
+
+### Mostrar objetos
+
+Consiste en obtener un conjunto de publicaciones sobre artículos cuyo estado es disponible, que van a ser mostradas en la pantalla principal de la aplicación, los datos se obtienen a partir de las tablas Objeto, Imagen y Categoría.
+
+La definición de este servicio se puede encontrar en el [controlador del modelo Objeto](https://github.com/rossmpj/Reciclapp-Backend/blob/master/app/Http/Controllers/ObjetoController.php)
+
+![mostrar_objetos.png](https://github.com/rossmpj/Reciclapp-Backend/blob/master/public/api/mostrar_objetos.PNG)
+
+
+### Mostrar objetos por categoría
+
+Este servicio recibirá como parámetro una categoría en particular y mostrará de igual manera que en mostrarObjetos los objetos, pero en este caso los que pertenezcan al parámetro que coincida con la tabla Categoría. 
+
+La definición de este servicio se puede encontrar en el [controlador del modelo Objeto](https://github.com/rossmpj/Reciclapp-Backend/blob/master/app/Http/Controllers/ObjetoController.php)
+
+![objetos_por_categoria.png](https://github.com/rossmpj/Reciclapp-Backend/blob/master/public/api/objetos_por_categoria.PNG)

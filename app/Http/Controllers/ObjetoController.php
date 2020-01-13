@@ -20,6 +20,45 @@ class ObjetoController extends Controller
         $objeto->save();   
     }
 
+    public function ver_mis_publicaciones($usuario_id)
+    {
+        return Objeto::select('informacion_contactos.nombres', 'informacion_contactos.apellidos', 
+        'informacion_contactos.ciudad', 'informacion_contactos.direccion', 'informacion_contactos.telefono', 
+        'objetos.nombre as título de publicación', 'objetos.descripcion', 'objetos.precio', 
+        'objetos.fecha_publicacion', 'imagenes.ruta', 'categorias.tipo as categoria')
+        ->join('usuarios','usuarios.usuario_id','=','objetos.usuario_id')
+        ->join('informacion_contactos','usuarios.informacion_id','=','informacion_contactos.informacion_id')
+        ->join('imagenes','imagenes.objeto_id','=','objetos.objeto_id')
+        ->join('categorias','categorias.categoria_id','=','objetos.categoria_id')
+        ->where('objetos.usuario_id', $usuario_id)
+        ->get();
+    }
 
+    public function mostrar_objetos_por_categoria($categoria)
+    {
+        return Objeto::select('objetos.nombre', 'objetos.descripcion', 'objetos.precio', 
+        'objetos.fecha_publicacion', 'imagenes.ruta')
+        ->join('imagenes','imagenes.objeto_id','=','objetos.objeto_id')
+        ->join('categorias','categorias.categoria_id','=','objetos.categoria_id')
+        ->where('categorias.tipo', $categoria)
+        ->get();
+    }
+
+    public function mostrar_objetos()
+    {
+        return Objeto::select('nombre', 'descripcion', 'precio', 
+        'fecha_publicacion', 'imagenes.ruta')
+        ->join('imagenes','imagenes.objeto_id','=','objetos.objeto_id')
+        ->join('categorias','categorias.categoria_id','=','objetos.categoria_id')
+        ->where('estado', 'disponible')
+        ->get();
+    }
+
+    public function cambiar_estado(Request $request, $objeto_id)
+    {
+        return \DB::table('objetos')
+               ->where('objeto_id', $objeto_id)
+               ->update(['estado' => $request->get('estado')]);
+    }
     
 }

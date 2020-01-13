@@ -42,5 +42,17 @@ class ImagenSeeder extends Seeder
             'ruta' => 'App\public\images\bronce.jpeg',
             'objeto_id' => 7
         ]);
+        Imagen::create([
+            'ruta' => 'App\public\images\papel1.jpg',
+            'objeto_id' => 8
+        ]);
+        Imagen::create([
+            'ruta' => 'App\public\images\papel2.jpg',
+            'objeto_id' => 9
+        ]);
+        Imagen::create([
+            'ruta' => 'App\public\images\papel3.jpeg',
+            'objeto_id' => 10
+        ]);
     }
 }

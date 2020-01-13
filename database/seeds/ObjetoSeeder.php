@@ -77,5 +77,32 @@ class ObjetoSeeder extends Seeder
             'usuario_id' => 'kgdono@hotmail.com',
             'categoria_id' => 7
         ]);
+        Objeto::create([
+            'nombre' => 'Papel periódico',
+            'descripcion' => 'Papel periódico llano por pliegos',
+            'precio' => 1.05,
+            'fecha_publicacion' => '2019-08-02',
+            'estado' => 'disponible',
+            'usuario_id' => 'rmpincay@espol.edu.ec',
+            'categoria_id' => 1
+        ]);
+        Objeto::create([
+            'nombre' => 'Papel archivo',
+            'descripcion' => 'Caja de papel reciclado',
+            'precio' => 3.75,
+            'fecha_publicacion' => '2019-01-30',
+            'estado' => 'no disponible',
+            'usuario_id' => 'pgvera@espol.edu.ec',
+            'categoria_id' => 1
+        ]);
+        Objeto::create([
+            'nombre' => 'Papel reciclado',
+            'descripcion' => 'Papel tamaño oficio colores variados',
+            'precio' => 2.75,
+            'fecha_publicacion' => '2019-07-11',
+            'estado' => 'disponible',
+            'usuario_id' => 'sbaguirr@espol.edu.ec',
+            'categoria_id' => 1
+        ]);
     }
 }
