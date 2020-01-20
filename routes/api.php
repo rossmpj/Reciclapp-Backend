@@ -25,4 +25,7 @@ use Illuminate\Http\Request;
 	Route::get('ver_mis_publicaciones/{usuario_id}', 'ObjetoController@ver_mis_publicaciones');
 	Route::get('mostrar_objetos_por_categoria/{categoria}', 'ObjetoController@mostrar_objetos_por_categoria');
 	Route::get('mostrar_objetos', 'ObjetoController@mostrar_objetos');
-	Route::put('cambiar_estado/{objeto_id}', 'ObjetoController@cambiar_estado');
+    Route::put('cambiar_estado/{objeto_id}', 'ObjetoController@cambiar_estado');
+    
+    /*API Categoria */
+    Route::get('mostrar_categorias', 'CategoriaController@index');
