@@ -24,9 +24,9 @@ class ObjetoController extends Controller
     {
         return Objeto::select(
             'objetos.objeto_id','objetos.nombre as titulo', 'objetos.descripcion', 'objetos.precio', 
-        'objetos.fecha_publicacion', 'imagenes.ruta', 'categorias.tipo as categoria')
+        'objetos.fecha_publicacion', 'categorias.tipo as categoria')
         ->join('usuarios','usuarios.usuario_id','=','objetos.usuario_id')
-        ->join('imagenes','imagenes.objeto_id','=','objetos.objeto_id') 
+      //  ->join('imagenes','imagenes.objeto_id','=','objetos.objeto_id') , 'imagenes.ruta'
         ->join('categorias','categorias.categoria_id','=','objetos.categoria_id')
         ->where('objetos.usuario_id', $usuario_id)
         ->get();
