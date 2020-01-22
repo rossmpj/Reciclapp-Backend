@@ -13,7 +13,6 @@ class ObjetoController extends Controller
         $objeto->nombre= $request->get('nombre');
         $objeto->descripcion= $request->get('descripcion');
         $objeto->precio= $request->get('precio');
-        $objeto->fecha_publicacion= $request->get('fecha_publicacion');
         $objeto->estado= $request->get('estado');
         $objeto->usuario_id= $request->get('usuario_id');
         $objeto->categoria_id= $request->get('categoria_id');
@@ -24,9 +23,9 @@ class ObjetoController extends Controller
     {
         return Objeto::select(
             'objetos.objeto_id','objetos.nombre as titulo', 'objetos.descripcion', 'objetos.precio', 
-        'objetos.fecha_publicacion', 'categorias.tipo as categoria')
+        'objetos.created_at', 'categorias.tipo as categoria','imagenes.ruta')
         ->join('usuarios','usuarios.usuario_id','=','objetos.usuario_id')
-      //  ->join('imagenes','imagenes.objeto_id','=','objetos.objeto_id') , 'imagenes.ruta'
+        ->join('imagenes','imagenes.objeto_id','=','objetos.objeto_id') 
         ->join('categorias','categorias.categoria_id','=','objetos.categoria_id')
         ->where('objetos.usuario_id', $usuario_id)
         ->get();
@@ -35,7 +34,7 @@ class ObjetoController extends Controller
     public function mostrar_objetos_por_categoria($categoria)
     {
         return Objeto::select('objetos.nombre', 'objetos.descripcion', 'objetos.precio', 
-        'objetos.fecha_publicacion', 'imagenes.ruta')
+        'objetos.created_at', 'imagenes.ruta')
         ->join('imagenes','imagenes.objeto_id','=','objetos.objeto_id')
         ->join('categorias','categorias.categoria_id','=','objetos.categoria_id')
         ->where('categorias.tipo', $categoria)
@@ -45,7 +44,7 @@ class ObjetoController extends Controller
     public function mostrar_objetos()
     {
         return Objeto::select('nombre', 'descripcion', 'precio', 
-        'fecha_publicacion', 'imagenes.ruta')
+        'objetos.created_at', 'imagenes.ruta')
         ->join('imagenes','imagenes.objeto_id','=','objetos.objeto_id')
         ->join('categorias','categorias.categoria_id','=','objetos.categoria_id')
         ->where('estado', 'disponible')

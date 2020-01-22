@@ -15,7 +15,7 @@ class Objeto extends Model
      * @var array
      */
     protected $fillable = [
-        'nombre', 'descripcion', 'precio', 'fecha_publicacion','estado','usuario_id', 'categoria_id'
+        'nombre', 'descripcion', 'precio', 'estado','created_at','usuario_id', 'categoria_id'
     ];
 
     /**
@@ -24,7 +24,7 @@ class Objeto extends Model
      * @var array
      */
     protected $hidden = [
-    	'created_at', 'updated_at'
+    	'updated_at'
     ];
   
     // Relación: Categoria - Objeto (1 - M)
