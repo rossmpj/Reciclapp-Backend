@@ -15,4 +15,8 @@ class UsuarioController extends Controller
         ->where('usuarios.usuario_id',$usuario_id)
         ->get();
     }
+
+    public function usuarios(){
+        return Usuario::all();
+    }
 }

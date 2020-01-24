@@ -47,20 +47,12 @@ class ObjetoSeeder extends Seeder
             'categoria_id' => 4
         ]);
         Objeto::create([
-            'nombre' => 'Madera fina reciclada',
-            'descripcion' => 'Madera cortada fina pintada de color café, 5 piezas',
-            'precio' => 9.00,
-            'estado' => 'disponible',
-            'usuario_id' => 'rmpincay@espol.edu.ec',
-            'categoria_id' => 5
-        ]);
-        Objeto::create([
             'nombre' => 'Latas de aluminio',
             'descripcion' => 'Latas con acabado metálico en varios colores',
             'precio' => 4.00,
             'estado' => 'no disponible',
             'usuario_id' => 'fundacionmespin@outlook.es',
-            'categoria_id' => 6
+            'categoria_id' => 5
         ]);
         Objeto::create([
             'nombre' => 'Piezas de bronce reciclado',
@@ -68,7 +60,7 @@ class ObjetoSeeder extends Seeder
             'precio' => 6.00,
             'estado' => 'no disponible',
             'usuario_id' => 'kgdono@hotmail.com',
-            'categoria_id' => 7
+            'categoria_id' => 6
         ]);
         Objeto::create([
             'nombre' => 'Papel periódico',

@@ -27,13 +27,10 @@ class CategoriaSeeder extends Seeder
             'tipo' => 'vidrio'
         ]);
         Categoria::create([
-            'tipo' => 'madera'
-        ]);
-        Categoria::create([
             'tipo' => 'aluminio'
         ]);
         Categoria::create([
-            'tipo' => 'bronce'
+            'tipo' => 'chatarra'
         ]);
     }
 }

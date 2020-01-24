@@ -7,7 +7,7 @@ use App\Models\Categoria;
 
 class CategoriaController extends Controller
 {
-    public function index()
+    public function categorias()
     {
         return Categoria::all();
     }

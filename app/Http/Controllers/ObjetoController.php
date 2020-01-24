@@ -23,11 +23,23 @@ class ObjetoController extends Controller
     {
         return Objeto::select(
             'objetos.objeto_id','objetos.nombre as titulo', 'objetos.descripcion', 'objetos.precio', 
-        'objetos.created_at', 'categorias.tipo as categoria','imagenes.ruta')
+        'objetos.created_at', 'categorias.tipo as categoria', 'objetos.estado', 'imagenes.ruta')
         ->join('usuarios','usuarios.usuario_id','=','objetos.usuario_id')
         ->join('imagenes','imagenes.objeto_id','=','objetos.objeto_id') 
         ->join('categorias','categorias.categoria_id','=','objetos.categoria_id')
         ->where('objetos.usuario_id', $usuario_id)
+        ->get();
+    }
+
+    public function ver_publicaciones_otros($usuario_id)
+    {
+        return Objeto::select(
+            'objetos.objeto_id','objetos.nombre as titulo', 'objetos.descripcion', 'objetos.precio', 
+        'objetos.created_at', 'categorias.tipo as categoria', 'imagenes.ruta')
+        ->join('usuarios','usuarios.usuario_id','=','objetos.usuario_id')
+        ->join('imagenes','imagenes.objeto_id','=','objetos.objeto_id')
+        ->join('categorias','categorias.categoria_id','=','objetos.categoria_id')
+        ->where('objetos.usuario_id', "!=", $usuario_id)
         ->get();
     }
 
