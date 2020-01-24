@@ -3,12 +3,16 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use App\Models\Imagen;
 use App\Models\Objeto;
 
 class ObjetoController extends Controller
 {
     public function registrar_objeto(Request $request)
     {
+        DB::beginTransaction();
+        try{
         $objeto= new Objeto();
         $objeto->nombre= $request->get('nombre');
         $objeto->descripcion= $request->get('descripcion');
@@ -17,6 +21,19 @@ class ObjetoController extends Controller
         $objeto->usuario_id= $request->get('usuario_id');
         $objeto->categoria_id= $request->get('categoria_id');
         $objeto->save();   
+
+        
+        $imagen= new Imagen();
+        $imagen->ruta= $request->get('ruta');
+        $imagen->objeto_id= $objeto->objeto_id;
+        $imagen->save();
+
+        DB::commit();
+                return response()->json(['log'=>'exito'],200);
+        }catch(Exception $e){
+            DB::rollback();
+            return response()->json(['log'=>$e],400);
+        } 
     }
 
     public function ver_mis_publicaciones($usuario_id)
