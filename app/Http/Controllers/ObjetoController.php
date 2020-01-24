@@ -40,7 +40,7 @@ class ObjetoController extends Controller
     {
         return Objeto::select(
             'objetos.objeto_id','objetos.nombre as titulo', 'objetos.descripcion', 'objetos.precio', 
-        'objetos.created_at', 'categorias.tipo as categoria', 'objetos.estado', 'imagenes.ruta')
+        'objetos.created_at', 'categorias.tipo as categoria', 'objetos.estado', 'imagenes.ruta', 'usuarios.nombre_usuario')
         ->join('usuarios','usuarios.usuario_id','=','objetos.usuario_id')
         ->join('imagenes','imagenes.objeto_id','=','objetos.objeto_id') 
         ->join('categorias','categorias.categoria_id','=','objetos.categoria_id')
@@ -52,7 +52,7 @@ class ObjetoController extends Controller
     {
         return Objeto::select(
             'objetos.objeto_id','objetos.nombre as titulo', 'objetos.descripcion', 'objetos.precio', 
-        'objetos.created_at', 'categorias.tipo as categoria', 'imagenes.ruta')
+        'objetos.created_at', 'categorias.tipo as categoria', 'imagenes.ruta','usuarios.nombre_usuario')
         ->join('usuarios','usuarios.usuario_id','=','objetos.usuario_id')
         ->join('imagenes','imagenes.objeto_id','=','objetos.objeto_id')
         ->join('categorias','categorias.categoria_id','=','objetos.categoria_id')
@@ -62,8 +62,9 @@ class ObjetoController extends Controller
 
     public function mostrar_objetos_por_categoria($categoria)
     {
-        return Objeto::select('objetos.nombre', 'objetos.descripcion', 'objetos.precio', 
-        'objetos.created_at', 'imagenes.ruta')
+        return Objeto::select('objetos.objeto_id','objetos.nombre as titulo', 'objetos.descripcion', 'objetos.precio', 
+        'objetos.created_at','categorias.tipo as categoria', 'imagenes.ruta','usuarios.nombre_usuario')
+        ->join('usuarios','usuarios.usuario_id','=','objetos.usuario_id')
         ->join('imagenes','imagenes.objeto_id','=','objetos.objeto_id')
         ->join('categorias','categorias.categoria_id','=','objetos.categoria_id')
         ->where('categorias.tipo', $categoria)
